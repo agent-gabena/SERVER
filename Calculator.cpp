@@ -1,5 +1,5 @@
 #include "Calculator.h"
-void Calculator::math(int work_sock)
+void Calculator::math(int work_sock, std::string &err_way)
 {
     uint32_t amount;
     uint32_t vector_size;
@@ -22,6 +22,7 @@ void Calculator::math(int work_sock)
         mfc = sum/vector_size;
         send(work_sock, &mfc, sizeof(mfc), 0);
     }
+    LogWriter::log(err_way, "Результат вычислений получен и отправлен клиенту");
     std::cout << "Program finish!" <<std::endl;
     close(work_sock);
 }

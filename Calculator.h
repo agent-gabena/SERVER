@@ -3,5 +3,5 @@
 class Calculator
 {
 public:
-    static void math(int work_sock);
+    static void math(int work_sock, std::string &err_way);
 };

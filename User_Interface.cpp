@@ -33,7 +33,7 @@ void User_Interface::operator()()
     while(true) {
         int work_sock = Comunicator.client_addr(socket, LogWrite);
         Comunicator.autorized(work_sock, file, all_names, LogWrite);
-        Calculator::math(work_sock);
+        Calculator::math(work_sock, LogWrite);
     }
 }
 void User_Interface::Input()
