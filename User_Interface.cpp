@@ -15,7 +15,7 @@ User_Interface::User_Interface(int argc, char **argv)
 void User_Interface::operator()()
 {
     Input();
-    LogWriter::log(LogWrite, "Ошибок нет");
+    LogWriter::log(LogWrite, "Командная строка прочитана");
     std::string error;
     std::map <std::string,std::string> all_names;
     try
@@ -28,10 +28,11 @@ void User_Interface::operator()()
         exit(1);
     }
     Comunicator Comunicator;
-    int socket = Comunicator.self_addr(port);
+    
+    int socket = Comunicator.self_addr(port, LogWrite);
     while(true) {
-        int work_sock = Comunicator.client_addr(socket);
-        Comunicator.autorized(work_sock, file, all_names);
+        int work_sock = Comunicator.client_addr(socket, LogWrite);
+        Comunicator.autorized(work_sock, file, all_names, LogWrite);
         Calculator::math(work_sock);
     }
 }
